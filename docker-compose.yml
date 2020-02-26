@@ -1,0 +1,82 @@
+version: '3'
+services:
+
+  #PHP Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: currency_calc_app
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - app-network
+
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: webserver_nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "81:81"
+      - "443:443"
+    volumes:
+      - ./:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app-network
+
+  #MySQL Service
+  db:
+    image: mariadb
+    container_name: db_mariadb
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: currency_calc_app
+      MYSQL_USER: user
+      MYSQL_PASSWORD: test
+      MYSQL_ROOT_PASSWORD: cca_test_pw
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql/
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - app-network
+
+  #PHPMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    links: 
+      - db:db
+    ports:
+      - "8088:80"
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: test
+      MYSQL_ROOT_PASSWORD: cca_test_pw
+    networks:
+      - app-network
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
+
+#Volumes
+volumes:
+  dbdata:
+    driver: local
