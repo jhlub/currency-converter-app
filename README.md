@@ -79,3 +79,4 @@ Project contains:
     * app\Http\Controllers\Auth
     * test Examples
 - [ ] 'TODO' in code
+- [ ] More DB tests
