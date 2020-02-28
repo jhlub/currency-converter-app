@@ -1,0 +1,18 @@
+.st-footer {
+  position: relative;
+  display: block;
+  text-align: center;
+  background-color: $c_footer;
+  padding: 10px 20px 5px;
+
+  .footer-title {
+    display: block;
+    color: $c_footer_font;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 1.2;
+    padding: 0;
+    margin: 0 0 5px;
+  }
+}

@@ -1,0 +1,27 @@
+// Breakpoints for IncludeMedia
+$breakpoints: (
+  'phone': 320px,
+  'tablet': 768px,
+  'desktop': 1024px,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+) !default;
+
+// Colors
+$c_1:           #5fa774;
+$c_2:           #abe2c7;
+$c_3:           #d6fadf;
+$c_4:           #90c9d6;
+$c_5:           #457e8d;
+
+// Color Vars
+$c_main:                  $c_3;
+$c_font:                  $c_5;
+$c_header:                $c_2;
+$c_inputs_bg:             #f1f1f1;
+$c_inputs:                $c_5;
+$c_inputs_placeholder:    $c_2;
+$c_footer:                $c_1;
+$c_footer_font:           $c_3;

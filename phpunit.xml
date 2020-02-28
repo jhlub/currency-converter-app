@@ -11,7 +11,18 @@
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
+
+        <testsuite name="Feature/API">
+            <directory suffix="Test.php">./tests/Feature/API</directory>
+        </testsuite>
     </testsuites>
+    <groups>
+        <include>
+            <group>APITest</group>
+            <group>Frontend</group>
+            <group>DBTest</group>
+        </include>
+    </groups>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./app</directory>

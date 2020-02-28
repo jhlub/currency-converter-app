@@ -1,0 +1,57 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: #fff;
+  color: $c_5;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  font-size: 14px;
+  margin: 0;
+}
+
+.full-height {
+  min-height: 100vh;
+}
+
+.flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.position-ref {
+  position: relative;
+}
+
+.content {
+  text-align: center;
+}
+
+.title {
+  font-size: 36px;
+}
+
+.links > a {
+  color: #636b6f;
+  padding: 0 25px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.m-b-md {
+  margin-bottom: 30px;
+}
+
+.st-main {
+  position: relative;
+  display: block;
+  min-height: 100vh;
+  background-color: $c_3;
+}
