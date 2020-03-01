@@ -6,7 +6,7 @@
 
 html, body {
   background-color: #fff;
-  color: $c_5;
+  color: $c_font;
   font-family: 'Nunito', sans-serif;
   font-weight: 200;
   font-size: 14px;
@@ -29,6 +29,7 @@ html, body {
 
 .content {
   text-align: center;
+  max-width: 100%;
 }
 
 .title {

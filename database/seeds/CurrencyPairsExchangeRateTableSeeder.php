@@ -14,17 +14,17 @@ class CurrencyPairsExchangeRateTableSeeder extends Seeder
     public function run()
     {
         $currencies = Currency::all();
-        
+
         CurrencyPair::create([
             'base_currency_id' => $currencies->where('symbol', 'SGD')->first()->id,
             'quote_currency_id' => $currencies->where('symbol', 'PLN')->first()->id,
-            'exchange_rate' => CurrencyPair::getExchangeRate('SGD_TO_PLN'),
+            'exchange_rate' => 2.83,
         ]);
 
          CurrencyPair::create([
             'base_currency_id' => $currencies->where('symbol', 'PLN')->first()->id,
             'quote_currency_id' => $currencies->where('symbol', 'SGD')->first()->id,
-            'exchange_rate' => CurrencyPair::getExchangeRate('PLN_TO_SGD'),
+            'exchange_rate' => 0.35,
         ]);
     }
 }

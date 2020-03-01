@@ -20,7 +20,7 @@ class CurrencyCalcTest extends ExtendedTestCase
      *
      * Action: API\CurrencyCalcController@convert
      * Endpoint: /api/v1/convert
-     * 
+     *
      * @return void
      */
     public function testCurrencyConvertSgdCorrect(): void
@@ -51,7 +51,7 @@ class CurrencyCalcTest extends ExtendedTestCase
      *
      * Action: API\CurrencyCalcController@convert
      * Endpoint: /api/v1/convert
-     * 
+     *
      * @return void
      */
     public function testCurrencyConvertPlnCorrect(): void
@@ -81,7 +81,7 @@ class CurrencyCalcTest extends ExtendedTestCase
      *
      * Action: API\CurrencyCalcController@convert
      * Endpoint: /api/v1/convert
-     * 
+     *
      * @return void
      */
     public function testCurrencyConvertIncorrectValidation(): void
@@ -98,7 +98,7 @@ class CurrencyCalcTest extends ExtendedTestCase
             ->assertStatus(400)
             ->assertJson([
                 "success" => false,
-                "message" => "Wrong parameters."
+                "message" => "Invalid parameters."
             ]);
     }
 
@@ -107,7 +107,7 @@ class CurrencyCalcTest extends ExtendedTestCase
      *
      * Action: API\CurrencyCalcController@convert
      * Endpoint: /api/v1/convert
-     * 
+     *
      * @return void
      */
     public function testCurrencyConvertIncorrectCurriences(): void
@@ -122,7 +122,7 @@ class CurrencyCalcTest extends ExtendedTestCase
 
 
         $response
-            ->assertStatus(400)
+            ->assertStatus(422)
             ->assertJson([
                 "success" => false,
                 "message" => "Wrong currencies."
@@ -135,7 +135,7 @@ class CurrencyCalcTest extends ExtendedTestCase
      *
      * Action: API\CurrencyCalcController@convert
      * Endpoint: /api/v1/convert
-     * 
+     *
      * @return void
      */
     /*

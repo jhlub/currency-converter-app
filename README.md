@@ -9,10 +9,15 @@ Project contains:
     * app: laravel app
     * phpmyadmin: phpmyadmin
 
-## Requirements
-1. Docker
-1. Docker compose
+## Demo page:
+[https://ccapi.firefly.usermd.net](https://ccapi.firefly.usermd.net)
+
+## Requirements*
+1. Docker*
+1. Docker compose*
 1. Yarn/NPM
+
+    *Docker was configured on Ubuntu 18.
 ----
 
 ## Setup project:
@@ -51,6 +56,8 @@ Project contains:
 
 #### Build assets, scripts and styles (DEV)
     $ yarn dev
+    OR
+    $yarn production
 
 ----
 
@@ -77,6 +84,5 @@ Project contains:
 - [ ] REST API Authentication by API_KEY and domain.
 - [ ] Remove auto generated code from skeleton app like:
     * app\Http\Controllers\Auth
-    * test Examples
 - [ ] 'TODO' in code
 - [ ] More DB tests

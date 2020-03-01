@@ -2,18 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Currency;
 use Illuminate\Database\Eloquent\Model;
 
 class CurrencyPairExchangeRate extends Model
 {
-
-    /**
-     * @var array
-     */
-    protected const CURRENCY_PAIRS = [
-        'SGD_TO_PLN' => 2.83,
-        'PLN_TO_SGD' => 0.35,
-    ];
 
     /**
      * The table associated with the model.
@@ -38,15 +31,22 @@ class CurrencyPairExchangeRate extends Model
         return $this->belongsTo('App\Models\Currency', 'quote_currency_id', 'id');
     }
 
+
     /**
-     * Method returns value how much of the quote currency is needed to purchase
-     * one unit of the base currency.
+     * TODO Oprzec znalezienie danej na podstawie relacji z Currency!
      *
-     * @param string $currencyPair
      * @return null|float
      */
-    public static function getExchangeRate(string $currencyPair): ?float
+    public static function getExchangeRateBySymbols($baseCurrencySymbol, $quoteCurrencySymbol): ?float
     {
-        return self::CURRENCY_PAIRS[$currencyPair] ?? null;
+
+        $baseCurrencyId = Currency::where('symbol', $baseCurrencySymbol)->first()->id;
+        $quoteCurrencyId = Currency::where('symbol', $quoteCurrencySymbol)->first()->id;
+
+        $exchangeRate = CurrencyPairExchangeRate::where('base_currency_id', $baseCurrencyId)
+                                                ->where('quote_currency_id', $quoteCurrencyId)
+                                                ->first();
+
+        return $exchangeRate->exchange_rate ?? null;
     }
 }

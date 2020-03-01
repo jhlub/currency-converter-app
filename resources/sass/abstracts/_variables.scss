@@ -10,15 +10,22 @@ $breakpoints: (
 ) !default;
 
 // Colors
-$c_1:           #5fa774;
-$c_2:           #abe2c7;
-$c_3:           #d6fadf;
-$c_4:           #90c9d6;
-$c_5:           #457e8d;
+//$c_1:           #5fa774;
+//$c_2:           #abe2c7;
+//$c_3:           #d6fadf;
+//$c_4:           #90c9d6;
+//$c_5:           #457e8d;
+
+$c_1:           #bfd6f7;
+$c_2:           #8dbdff;
+$c_3:           #63a1f4;
+$c_4:           #4991f2;
+$c_5:           #3b7cd8;
 
 // Color Vars
 $c_main:                  $c_3;
-$c_font:                  $c_5;
+//$c_font:                  $c_5;
+$c_font:                  #fff;
 $c_header:                $c_2;
 $c_inputs_bg:             #f1f1f1;
 $c_inputs:                $c_5;

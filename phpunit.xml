@@ -21,6 +21,7 @@
             <group>APITest</group>
             <group>Frontend</group>
             <group>DBTest</group>
+            <group>CurrencyConverterService</group>
         </include>
     </groups>
     <filter>

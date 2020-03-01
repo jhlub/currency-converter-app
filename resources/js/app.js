@@ -43,15 +43,15 @@ const currencyConverterTrigger = () => {
         apiUrl.searchParams.append('from', changedTarget === 'PLN' ? 'PLN' : 'SGD');
         apiUrl.searchParams.append('to', changedTarget === 'PLN' ? 'SGD' : 'PLN');
         apiUrl.searchParams.append('value', changedTarget === 'PLN' ? pln.value : sgd.value);
-        apiUrl.searchParams.append('api_key', CURRENCY_CONVERTER_API_KEY);        
+        apiUrl.searchParams.append('api_key', CURRENCY_CONVERTER_API_KEY);
 
         if (currenciesConverter.value !== null) {
             loaderOn();
             console.log('API call!');
 
             fetch(apiUrl)
-                .then(res => res.json())
-                .then(res => {
+                .then((res) => res.json())
+                .then((res) => {
                     console.log(res);
                     if (changedTarget === 'PLN') {
                         sgd.value = res.data.value;
@@ -63,7 +63,7 @@ const currencyConverterTrigger = () => {
                     }
                     loaderOff();
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.error(err);
                     errorText.classList.add('active');
                     loaderOff();

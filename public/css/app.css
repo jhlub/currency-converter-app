@@ -409,38 +409,39 @@ template {
 }
 
 .currency-calc-form-container .currency-calc-form input[type=text] {
+  max-width: 100%;
   min-height: 45px;
   background-color: #f1f1f1;
-  border: 2px solid #abe2c7;
+  border: 2px solid #8dbdff;
   outline: none;
-  color: #457e8d;
+  color: #3b7cd8;
   padding: 10px 20px;
   transition: border-color 0.3s;
 }
 
 .currency-calc-form-container .currency-calc-form input[type=text]::-webkit-input-placeholder {
-  color: #abe2c7;
+  color: #8dbdff;
 }
 
 .currency-calc-form-container .currency-calc-form input[type=text]::-moz-placeholder {
-  color: #abe2c7;
+  color: #8dbdff;
 }
 
 .currency-calc-form-container .currency-calc-form input[type=text]:-ms-input-placeholder {
-  color: #abe2c7;
+  color: #8dbdff;
 }
 
 .currency-calc-form-container .currency-calc-form input[type=text]::-ms-input-placeholder {
-  color: #abe2c7;
+  color: #8dbdff;
 }
 
 .currency-calc-form-container .currency-calc-form input[type=text]::placeholder {
-  color: #abe2c7;
+  color: #8dbdff;
 }
 
 .currency-calc-form-container .currency-calc-form input[type=text]:focus,
 .currency-calc-form-container .currency-calc-form input[type=text]:hover {
-  border-color: #90c9d6;
+  border-color: #4991f2;
 }
 
 .currency-calc-form-container .error-text {
@@ -492,7 +493,7 @@ template {
   position: absolute;
   left: 8px;
   width: 16px;
-  background: #abe2c7;
+  background: #8dbdff;
   -webkit-animation: loader-v1 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
           animation: loader-v1 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
@@ -543,7 +544,7 @@ template {
   position: relative;
   display: block;
   text-align: center;
-  background-color: #abe2c7;
+  background-color: #8dbdff;
   padding: 20px 20px 10px;
 }
 
@@ -565,13 +566,13 @@ template {
   position: relative;
   display: block;
   text-align: center;
-  background-color: #5fa774;
+  background-color: #bfd6f7;
   padding: 10px 20px 5px;
 }
 
 .st-footer .footer-title {
   display: block;
-  color: #d6fadf;
+  color: #63a1f4;
   font-size: 14px;
   font-style: italic;
   font-weight: 700;
@@ -589,7 +590,7 @@ template {
 html,
 body {
   background-color: #fff;
-  color: #457e8d;
+  color: #fff;
   font-family: "Nunito", sans-serif;
   font-weight: 200;
   font-size: 14px;
@@ -612,6 +613,7 @@ body {
 
 .content {
   text-align: center;
+  max-width: 100%;
 }
 
 .title {
@@ -636,6 +638,6 @@ body {
   position: relative;
   display: block;
   min-height: 100vh;
-  background-color: #d6fadf;
+  background-color: #63a1f4;
 }
 

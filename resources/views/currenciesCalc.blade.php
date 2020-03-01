@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noindex"/>
 
         <title>Currencies Converter</title>
 
@@ -28,7 +29,7 @@
                         <div class="title m-b-md">
                             <h1 class="title">Calculate Currencies:</h1>
                             <div class="currency-calc-form-container loading">
-                                <p class="error-text">Only numbers and dots allowed!</p>
+                                <p class="error-text">Only numbers and dots are allowed!</p>
                                 <div class="loader-v1"><div></div><div></div><div></div></div>
                                 <form class="currency-calc-form" method="GET" action="/api/v1/convert">
                                     <div class="cur-box">

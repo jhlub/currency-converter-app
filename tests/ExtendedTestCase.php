@@ -25,13 +25,7 @@ class ExtendedTestCase extends TestCase
         if (DB::connection() instanceof \Illuminate\Database\SQLiteConnection) {
             DB::statement(DB::raw('PRAGMA foreign_keys=1'));
         }
-/*
-        if (config('database.default') === 'sqlite'){
-            $db = app()->make('db');
-            $db->connection()->getPdo()->exec('PRAGMA foreign_keys=1');
-            //Schema::enableForeignKeyConstraints();
-        }
-*/        
+
         $this->artisan('migrate');
         $this->artisan('db:seed');
     }

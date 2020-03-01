@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Currency;
-use App\Models\CurrencyPairExchangeRate as CurrencyPairs;
-use Illuminate\Database\Eloquent\Collection;
+use App\Http\Requests\GetConvertedCurrency;
+use App\Services\CurrencyConverterService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class CurrencyCalcController extends BaseController
 {
@@ -15,7 +12,7 @@ class CurrencyCalcController extends BaseController
     /**
      * TEST method.
      * REMOVE BEFORE DEPLOYMENT.
-     * 
+     *
      * Endpoint: /api/test
      *
      * @return \Illuminate\Http\JsonResponse
@@ -27,13 +24,13 @@ class CurrencyCalcController extends BaseController
 
     /**
      * Convert currencies method.
-     * 
+     *
      * Endpoint: /api/v1/convert
      *
      * @param \Illuminate\Http\Request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function convert(Request $request): JsonResponse
+    public function convert(GetConvertedCurrency $request): JsonResponse
     {
 
         // Allow only GET method.
@@ -42,62 +39,30 @@ class CurrencyCalcController extends BaseController
             return $this->sendError('Wrong method.' , [], 405);
         }
 
-        // Just simple data validation.
-        $simpleRequestValidation = Validator::make($request->all(), [
-            'from' => 'string|required|min:3|max:3',
-            'to' => 'string|required|min:3|max:3',
-            'value' => 'required|numeric',
-            'api_key' => 'string|required',
-        ]);
-
-
-
-        // Send error repospone on validation fails
-        if ($simpleRequestValidation->fails()) {
-            return $this->sendError('Wrong parameters.' , [], 400);
-        }
-
-        $currency = Currency::all();
-        $currencyPairs = CurrencyPairs::all();
-
-        // Collect vars
         $inputValues = $request->all();
-        $currencyFrom = $currency->where('symbol', $inputValues['from'])->first();
-        $currencyTo = $currency->where('symbol', $inputValues['to'])->first();
-        $valueFrom = round($inputValues['value'], 2);
 
-        
-        if ($currencyFrom === null || $currencyTo === null) {
-            return $this->sendError('Wrong currencies.' , [], 400);
-        }
-
-        // Get currency pair
-        $currencyPair = $currencyPairs
-                            ->where('base_currency_id', $currencyFrom->id)
-                            ->where('quote_currency_id', $currencyTo->id)
-                            ->first();
-
-        // If currency pair cannot be found return error
-        if ($currencyPair === null) {
+        try {
+            $converter = new CurrencyConverterService($inputValues['from'], $inputValues['to'], $inputValues['value']);
+            $converter->convertCurrencies();
+        } catch (\Exception $e) {
             return $this->sendError(
-                'Exchange rate for those currencies does not exists.',
-                [], 400);
+                $e->getMessage(),
+                [], 422);
         }
-
-        // Get exchange rate
-        $exchangeRate = $currencyPair->exchange_rate;
-
-        // Calculate exchanged value
-        $valueTo = round($valueFrom * $exchangeRate, 2);
 
         // Return response.
         return $this->sendResponse(
             [
-                'value' => $valueTo,
-                'currencyPair' => $currencyFrom->symbol . '_TO_' . $currencyTo->symbol,
-                'exchangeRate' => $exchangeRate,
+                'value' => $converter->convertCurrencies(),
+                'currencyPair' => $inputValues['from'] . '_TO_' . $inputValues['to'],
+                'exchangeRate' => $converter->getExchangeRate(),
             ],
-            sprintf('%.2f %s is worth %.2f %s', $valueFrom, $currencyFrom->symbol, $valueTo, $currencyTo->symbol)
+            sprintf('%.2f %s is worth %.2f %s',
+                $inputValues['value'],
+                $inputValues['from'],
+                $converter->convertCurrencies(),
+                $inputValues['to']
+            )
         );
     }
 }
