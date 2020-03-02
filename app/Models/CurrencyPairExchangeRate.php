@@ -33,8 +33,10 @@ class CurrencyPairExchangeRate extends Model
 
 
     /**
-     * TODO Oprzec znalezienie danej na podstawie relacji z Currency!
+     * Get exchange rate of currency pair by their symbols.
      *
+     * @param string $baseCurrencySymbol
+     * @param string $quoteCurrencySymbol
      * @return null|float
      */
     public static function getExchangeRateBySymbols($baseCurrencySymbol, $quoteCurrencySymbol): ?float
