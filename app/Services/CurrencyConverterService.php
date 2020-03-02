@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
-use App\Traits\GetCurrencyExchangeRateTrait;
+use App\Models\Currency;
+use App\Models\CurrencyPairExchangeRate;
 
 class CurrencyConverterService
 {
-    use GetCurrencyExchangeRateTrait;
 
     /**
      * Base currency.
@@ -63,6 +63,21 @@ class CurrencyConverterService
      */
     public function getExchangeRate()
     {
-        return $this->getExchangeRateByCurrenciesSymbol($this->baseCurrencySymbol, $this->quoteCurrencySymbol);
+        foreach ([$this->baseCurrencySymbol, $this->quoteCurrencySymbol] as $currencySymbol) {
+            if (!Currency::isCurrencyBySymbolExists($currencySymbol)) {
+                throw new \Exception('Wrong currencies.');
+            }
+        }
+
+        $exchangeRate = CurrencyPairExchangeRate::getExchangeRateBySymbols(
+            $this->baseCurrencySymbol,
+            $this->quoteCurrencySymbol
+        );
+
+        if ($exchangeRate === null) {
+            throw new \Exception('Exchange rate for those currencies does not exists.');
+        }
+
+        return $exchangeRate;
     }
 }
