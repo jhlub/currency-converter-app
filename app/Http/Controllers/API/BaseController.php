@@ -60,6 +60,6 @@ class BaseController extends Controller
      */
     public function authApiKey($request): bool
     {
-
+        return false;
     }
 }
