@@ -1,7 +1,8 @@
 //require('./bootstrap');
 
 const CURRENCY_CONVERTER_API_KEY = '1cxz8d7c7zx8wq7as9ad23asd72';
-const CURRENCY_CONVERTER_HOST = 'http://localhost:81';
+// const CURRENCY_CONVERTER_HOST = 'http://localhost:81';
+const CURRENCY_CONVERTER_HOST = 'https://ccapi.firefly.usermd.net';
 
 /**
  * TODO! Remove console.logs before deploy!
